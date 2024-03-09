@@ -63,17 +63,17 @@ const AgeCalculator = () => {
       {/* Output Area */}
       <div className="flex flex-col gap-2">
         <div className="flex gap-2">
-          <h2 className="italic text-[#864cfe] font-extrabold text-7xl ">38</h2>
+          <h2 className="italic text-[#864cfe] font-extrabold text-7xl">38</h2>
           <h2 className="italic font-extrabold text-black text-7xl">years</h2>
         </div>
 
         <div className="flex gap-2">
-          <h2 className="italic text-[#864cfe] font-extrabold text-7xl ">3</h2>
+          <h2 className="italic text-[#864cfe] font-extrabold text-7xl">3</h2>
           <h2 className="italic font-extrabold text-black text-7xl">months</h2>
         </div>
 
         <div className="flex gap-2">
-          <h2 className="italic text-[#864cfe] font-extrabold text-7xl ">26</h2>
+          <h2 className="italic text-[#864cfe] font-extrabold text-7xl">26</h2>
           <h2 className="italic font-extrabold text-black text-7xl">days</h2>
         </div>
       </div>
