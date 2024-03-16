@@ -1,9 +1,23 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NewsletterSignUp = () => {
   const [isSignupState, setIsSignupState] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState({ text: "", valid: false });
   const inputRefEmail = useRef<HTMLInputElement>(null);
+  const [largeScreen, setLargeScreen] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 700) {
+        setLargeScreen(true);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const isValidEmail = (email: string) => {
     return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
@@ -22,14 +36,14 @@ const NewsletterSignUp = () => {
 
   const thankState = () => {
     return (
-      <div className="flex flex-col gap-6 p-12 bg-white rounded-3xl max-w-[32%]">
+      <div className="flex flex-col gap-3 lg:gap-6 p-6 lg:p-12 bg-white rounded-3xl max-w-[90%] lg:max-w-[32%]">
         <img
           src="/assets/images/icon-list.svg"
           alt="list icon"
           width={52}
           height={52}
         />
-        <h1 className="text-[#242742] text-5xl font-bold ">
+        <h1 className="text-[#242742] text-3xl lg:text-5xl font-bold ">
           Thanks for subscribing!
         </h1>
 
@@ -52,9 +66,11 @@ const NewsletterSignUp = () => {
 
   const signupState = () => {
     return (
-      <div className="flex justify-between gap-12 p-6 bg-white rounded-3xl">
-        <div className="flex flex-col flex-[55%] gap-6 justify-center pl-12">
-          <h1 className="text-[#242742] text-5xl font-bold ">Stay updated!</h1>
+      <div className="flex flex-col-reverse justify-between gap-12 bg-white lg:w-2/3 lg:p-6 lg:flex-row rounded-3xl">
+        <div className="flex flex-col justify-center gap-6 px-4 mb-4 lg:mb-0 lg:px-0 lg:pl-12">
+          <h1 className="text-[#242742] text-4xl lg:text-5xl font-bold ">
+            Stay updated!
+          </h1>
           <p className="text-[#242742]">
             Join 60,000+ product managers receiving monthly updates on:
           </p>
@@ -114,10 +130,14 @@ const NewsletterSignUp = () => {
             </button>
           </form>
         </div>
-        <div className="flex-[50%] overflow-hidden rounded-xl">
+        <div className="overflow-hidden rounded-xl h-72 lg:h-full">
           <img
-            className="w-full h-full bg-center bg-no-repeat bg-cover"
-            src="/assets/images/illustration-sign-up-desktop.svg"
+            className="w-full bg-center bg-cover rounded-xl lg:rounded-r-xl"
+            src={
+              largeScreen
+                ? "/assets/images/illustration-sign-up-desktop.svg"
+                : "/assets/images/illustration-sign-up-mobile.svg"
+            }
             alt="illustration"
           />
         </div>
